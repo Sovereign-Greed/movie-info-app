@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+
+<div class="container mt-3">
+	<div class='row'>
+		<h1 class="col-md-12 text-center miniLogo">Search for Movie: OmdbAPI Key</h1>
+		<div class="review-form">
+			
+			
+			<form action="/found_movies" method="POST">
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="movie name" name="movie[title]">
+				</div>
+				
+				<div class="form-group">
+					<button class="btn btn-large btn-block btn-dark">
+						Search!
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer %>

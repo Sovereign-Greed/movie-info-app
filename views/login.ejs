@@ -1,0 +1,25 @@
+<% include ./partials/header %>
+
+<h1 class="form-header d-flex justify-content-center miniLogo">Log In to your Account!</h1>
+<div class="container">
+    <div class="row">
+		<div class="review-form">
+            <form action="/login" method="POST">
+                <div class="form-group">
+					<label for="usermame">Username</label>
+                    <input class="form-control" type="text" name="username" placeholder="Username" id="username">
+                </div>
+				<div class="form-group">
+					<label for="password">Password</label>
+                    <input class="form-control" type="password" name="password" placeholder="Password" id="password">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-mg btn-outline-success btn-block">Log In</button>
+                </div>
+            </form>
+            <a href="/movies">Go Back</a>
+        </div>
+    </div>
+</div>
+
+<% include ./partials/footer %>

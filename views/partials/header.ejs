@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta 
+			  name="viewport" 
+			  content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>FILMR8R</title>
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+		</script>
+		
+		<!-- Fontawesome CDN -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		
+		
+		<!-- Google fonts link -->
+		<!-- big shoulders cdn -->
+		<link href="https://fonts.googleapis.com/css?family=Big+Shoulders+Display:400,700&display=swap" rel="stylesheet">
+		<!-- lato cdn -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+		
+		<!-- main css file link -->
+		<link rel="stylesheet" href="/stylesheets/main.css">  
+	</head>
+	<body>
+  
+	<nav class="navbar bg-light navbar-light navbar-expand-md">
+			<div class="container-fluid">
+				<!-- home page / logo link -->
+				<div class="navbar-header">
+					<a class="navbar-brand text-danger" href="/movies"><i class="fas fa-film"></i> FILM||R8R</a>
+				</div>
+				<!-- Toggler/collapsibe Button -->
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<!-- nav bar -->
+				<div class="collapse navbar-collapse navbar" id="collapsibleNavbar">
+					<!-- Links - navbar doesn't float right without this empty navbar -->
+					<ul class="navbar-nav">				
+
+					</ul>
+					<!-- float right nav bar -->
+					<ul class="nav navbar-nav navbar-right">
+						<!-- display if no user is logged in -->
+						<% if(!currentUser){ %>
+							<li class="nav-item">
+								<a class="nav-link" href="/login">Log In</a>
+							</li>							
+							<li class="nav-item">
+								<a class="nav-link" href="/register">Sign Up</a>
+							</li>
+						<!-- display if user logged in -->
+						<% } else { %>
+							<li class="nav-item"><a class="nav-link" href="/search_key">Add New Movie</a></li>
+							<li class="nav-item"><a class="nav-link" href="/user/<%= currentUser._id %>"><%= currentUser.username %>'s Userpage</a></li>
+							<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+							
+						<% } %>
+						<li class="nav-item">
+						  <form class="form-inline" action="/movies" method="GET">
+							<div class="form-group">
+								<input type="text" name="search" placeholder="Movie search..." class="searchForm form-control mx-2">
+								<input type="submit" class="searchForm btn btn-dark" value="Search">
+							</div>
+						  </form>
+						</li>
+					</ul>				
+				</div>
+			</div>
+	</nav>
+	
+	<div class="contentDiv">  
+	 
+		<!-- flash error container and div -->
+		<div class="container ">
+			<% if (error && error.length > 0) { %>
+			<div class="alert alert-danger mt-3"><%= error  %></div>
+			<% } else if (success && success.length > 0) { %>
+			<div class="alert alert-success mt-3"><%= success  %></div>
+			<% } %>
+		</div>
+			

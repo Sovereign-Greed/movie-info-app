@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+		<div class="col-sm-12">
+			<h1 class="form-header miniLogo">Edit Profile: <%= foundUser.username %></h1>
+		</div>
+		<div class="review-form">
+        	
+            <form action="/user/<%= foundUser._id %>?_method=PUT" method="POST">
+				<h2 class="miniLogo text-center">
+					About:
+				</h2>
+                <div class="form-group">
+					<label for="user-about">User Description</label>
+					<input class="form-control" name="userInfo[about]" placeholder="<%= foundUser.about %>" id="user-about">
+                </div>
+				<h2 class="miniLogo text-center">
+					Favourite Quote:
+				</h2>
+				<div class="form-group">
+					<label for="user-quote">User's Favorite Quote</label>
+					<input class="form-control" type="text" name="userInfo[quote]" placeholder="<%= foundUser.quote %>" id="user-quote">
+				</div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-success btn-block">Submit!</button>
+                </div>
+            </form>
+            <a href="/user/<%= foundUser._id %>">Go Back</a>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>

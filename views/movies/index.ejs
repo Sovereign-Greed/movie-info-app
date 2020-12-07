@@ -1,0 +1,72 @@
+<% include ../partials/header %>
+
+<!-- only shows carousel if user did not search for movie  -->
+<% if (!search) { %>
+	
+	<!-- carousel showcasing movies -->
+	<div id="carouselExampleIndicators" class="carousel slide mainCarousel" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		</ol>
+		
+		<div class="carousel-inner">
+			<!-- avengers img - link to avengers movies search query -->
+			<div class="carousel-item active">
+				<a href="/movies?search=avengers"><img src="https://i.redd.it/8yonn7m4bfk31.jpg" class="d-block w-100 caraouselBanner" alt="..."></a>
+			</div>
+			<!-- star wars img - link to star wars movies search query -->
+			<div class="carousel-item">
+				<a href="/movies?search=star+wars"><img src="https://wallpaperaccess.com/full/2101913.jpg" class="d-block w-100 caraouselBanner" alt="..."></a>
+			</div>
+			<!-- darknight img - link to dark knight movies search query -->
+			<div class="carousel-item">
+				<a href="/movies?search=dark+knight"><img src="https://images6.alphacoders.com/381/381832.jpg" class="d-block w-100 caraouselBanner" alt="..."></a>
+			</div>
+			
+		</div>
+		
+		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+  		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+  		</a>
+	</div>
+
+<% } %>
+
+<div class="container mt-3">
+	
+	<!-- movie posts -->
+	<div class="row">
+		<!-- confirm movie arr has obj -->
+		<% if(allMovies && allMovies.length) { %>
+			<!-- creates movie img link for each movie -->
+			<% allMovies.forEach(function(movie){ %>
+			<div class="col-md-4 col-lg-3 col-6 text-center mb-3">
+				<div class="imgContainer">
+					<!-- movie img -->
+					<a href="/movies/<%= movie._id %>" class="mb-2"><img class="mb-2 image" src="<%= movie.omdbInfo.Poster %>"></a>
+					<!-- hover text - movie title + rating -->
+					<div class="middle">
+						<a class="midLink" href="/movies/<%= movie._id %>">
+							<p>
+								<%= movie.omdbInfo.Title %>
+							</p>
+							<p><%= movie.omdbInfo.imdbRating / 2 %> stars</p>
+						</a>
+					</div>
+				</div>
+
+			</div>
+			<% }) %>
+		<% } %>
+	</div>
+</div>
+
+	
+<% include ../partials/footer %>

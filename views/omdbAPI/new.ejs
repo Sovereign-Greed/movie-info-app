@@ -1,0 +1,44 @@
+<% include ../partials/header %>
+
+<div class="container mt-3">
+    <div class="row">
+		<h1 class="miniLogo text-center col-md-12">Create Movie Post: Insert Movie ID</h1>
+		
+		
+		<div class="col-md-10 review-form movie-id-header">
+            <a class="btn btn-outline-dark" href="/movies">Go Back</a>
+        </div>
+	
+		<!-- table showing each search result from omdb api -->
+		<table class="col-md-10 table-striped mx-auto movie-id-table">
+			<tr>
+				<th>Movie Title</th>
+				<th>Year</th>
+				<th>Type</th>
+				<th>Submit</th>
+			</tr>	
+		<% results["Search"].forEach(function(movie) { %>
+			<tr>
+				<td><%= movie.Title %></td>
+				<td><%= movie.Year %></td>
+				<td><%= movie.Type %></td>
+				<td>
+					<form action="/movies" method="POST">
+						<!-- input containing movie id DISPLAY SET TO NONE user only submits the id -->
+						<div class="form-group movie-id-input">
+							<input class="form-control" type="text" name="movie[imdbID]" placeholder="Insert ID" value="<%= movie.imdbID %>">
+						</div>
+						<!-- btn submit for id -->
+						<div class="form-group movie-id-button">
+							<button class="btn btn-sm btn-outline-success">Add <%= movie.Title %></button>
+						</div>
+					</form>
+				</td>
+			</tr>
+		<% }) %>
+		</table>
+		
+	</div>
+</div>
+
+<% include ../partials/footer %>

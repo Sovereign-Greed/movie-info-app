@@ -1,0 +1,60 @@
+<% include ../partials/header %>
+
+<div class="container mt-3">
+	<!-- jumbotron containg user info, quote, edit -->
+	<header class="jumbotron mb-3 p-4">
+		<div class="container">
+			<div class="">
+				<h1 class=""><span class="logo"><%= foundUser.username %></span></h1>
+				<!-- user edit info btn -->
+				<% if (foundUser._id.equals(currentUser._id)) { %>
+				<form class="float-right" action="/user/<%= foundUser._id %>/edit" method="GET">
+					<button type="submit" class="btn btn-sm btn-warning">
+						Edit
+					</button>
+				</form>
+				<% } else { %>
+				
+				<% } %>
+			</div>
+			<!-- user info -->
+			<div class="userInfo mt-3">
+				
+				<ol>
+					<li><span>About:</span><p><%= foundUser.about %></p></li>
+					<li><span>Favourite Movie Quote:</span><p>"<%= foundUser.favouriteQuote %>"</p></li>
+					<li><span>Hearts:</span><p><%= foundUser.hearts %></p></li>
+					
+				</ol>
+				
+			</div>
+			
+		</div>		
+	</header>
+	
+	<div class="row">
+		<!-- favorite movie display -->
+		<% foundUser.favorites.forEach(function(movie){ %>
+		<div class="col-md-4 col-lg-3 col-6 text-center mb-3">
+			
+			
+			<div class="imgContainer">
+				<a href="/movies/<%= movie._id %>" class="mb-2"><img class="mb-2 image" src="<%= movie.omdbInfo.Poster %>"></a>
+				<div class="middle">
+					<a class="midLink" href="/movies/<%= movie._id %>">
+						<p>
+							<%= movie.omdbInfo.Title %>
+						</p>
+						<!-- <hr class="style-two"> -->
+						<p><%= movie.omdbInfo.imdbRating / 2 %> stars</p>
+					</a>
+				</div>
+			</div>
+			
+	
+		</div>
+		<% }) %>
+	</div>
+</div>
+
+<% include ../partials/footer %>

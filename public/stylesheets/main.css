@@ -1,0 +1,298 @@
+body, html {
+	height: 100%;
+	overflow: auto;
+}
+
+body {
+	font-family: "Lato", sans-serif;
+	width: 100%;
+  	height: 100%;
+  	position: absolute;
+}
+
+/* --------------------------- */
+/* NAVBAR STYLING */
+/* --------------------------- */
+
+ nav {
+	border-bottom: 1px solid rgba(0,0,0, 0.1)
+}
+
+nav, .navbar {
+	padding: 0;
+	margin: 0;
+}
+
+.navbar-brand {
+	font-family: "Big Shoulders Display";
+	font-weight: 700;
+	font-size: 2.3em;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1); 
+}
+
+.nav-link {
+	font-size: .9em;
+}
+
+
+/* jumbotron styling */
+.jumbotron {
+	text-align: left;
+}
+
+/* carousel styling */
+
+.mainCarousel { 
+	margin: 0 ;
+} 
+
+img.caraouselBanner {
+	object-fit: cover;
+	width: 100%;
+	height: 450px;
+}
+
+
+/* --------------------------- */
+/* COLLAPSE NAVBAR STYLING */
+/* --------------------------- */
+
+@media only screen and (max-width : 768px) {
+	.navbar-header {
+		margin-left: 1em;
+	}
+	
+	.navbar-toggler {
+		margin-right: 1em;
+	}
+	
+	.nav-item {
+		margin-right: 1em;
+		text-align: right;
+	}
+	
+	.searchForm {
+		margin-bottom:10px;
+	}
+}
+
+/* --------------------------- */
+/* MOVIE LINK STYLING - INDEX PAGE */
+/* --------------------------- */
+
+.imgContainer {
+	position: relative;
+	padding:0;
+}
+
+.image {
+	opacity: 1;
+	display: block;
+	width: 100%;
+	height: auto;
+	transition: .8s ease;
+	backface-visibility: hidden;
+	border: 1px solid rgba(0,0,0, .8);
+	border-radius: 1%;
+}
+
+.middle {
+	transition:opacity .8s ease;
+	opacity: 0;
+	position:absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.overlayImg {
+	opacity: 0.2;
+	border: 1px solid rgba(0,0,0,.1);
+	border-radius: 1%;
+} 
+
+.overlayText {
+	opacity: 1;
+}
+
+.imageText{
+	font-weight: 400;
+	color: black;
+}
+
+.midLink {
+	color: black;
+	text-decoration: none;
+}
+
+.midLink:hover {
+	color: black;
+	text-decoration: none;
+}
+
+/* divider between hovering movie name and rating  */
+hr.style-two {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+/* --------------------------- */
+/* SPANS WITH FILMR8R LOGO STYLING */
+/* --------------------------- */
+
+span.logo {
+	font-family: "Big Shoulders Display";
+	font-weight: 700;
+	color: red;
+	font-size:1.1em;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1); 
+}
+
+.miniLogo {
+	font-family: "Lato", sans-serif;
+	font-weight: 700;
+	color: red;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+}
+
+/* --------------------------- */
+/* FORMS STYLING */
+/* --------------------------- */
+
+.review-form {
+	width:30%;
+	margin: 25px auto;
+}
+
+h1.form-header {
+	text-align: center;
+	margin-top: 35px;
+}
+
+.delete-form {
+    display: inline;
+}
+
+.form-inline {
+	text-align: center;
+}
+
+form.upvote-form, button.upvote-button {
+	display: inline;
+}
+/* ------------------------------------------------------------------------------- */
+/* NEED TO CHANGE - display none temporary */
+/* ------------------------------------------------------------------------------- */
+label {
+	display: none;
+}
+/* --------------------------- */
+/* SHOW (INDIVIDUAL MOVIE) PAGE STYLING */
+/* --------------------------- */
+
+/* movie info styling */
+ol {
+  color: #ccc;
+  list-style-type: none;
+}
+
+ol li span {
+  /* position: relative; */
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+li p {
+  font-size: .8em;
+  padding-left: 60px;
+  color: #555;
+}
+
+/* thumbnail styling */
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+/* comment styling */
+.well {
+	border: 1px solid #d4d4d4;
+	padding: 0px 10px;
+	border-radius: 5px;
+	background-color: #ececec;
+	margin: 1.5em auto;
+}
+
+
+
+/* indivdual comments */
+.well p {
+	padding: 0;
+	margin: 5px;
+}
+
+.well span {
+	font-weight: 700;
+}
+
+.userpageLink:hover {
+	text-decoration: none;
+}
+
+/* movie tab info */
+
+.tab-content {
+	border: 1px solid white;
+	border-radius: 1px;
+	background-color: #ececec;
+	padding-top: 10px;
+}
+
+div.movieInfo ol, div.movieInfo ol li {
+	padding: 0;
+	padding-left: 5px;
+}
+
+div.movieInfo ol li span {
+	color: black;
+}
+
+/* styling for add new movies page */
+
+.movie-id-input, .movie-id-button {
+	display: inline-block;
+	justify-content: center;
+	align-content: center;
+	margin: 5px auto;
+	padding: 5px 5px;
+}
+
+.movie-id-header {
+	justify-content: center;
+	text-align: center;
+}
+
+.movie-id-table td, .movie-id-table th {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.movie-id-input {
+	display: none;
+}

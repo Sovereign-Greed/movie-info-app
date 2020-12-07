@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+		<div class="col-sm-12">
+				<h1 class="form-header miniLogo">Add a comment to <%= movie.omdbInfo.Title %></h1>	
+		</div>
+		<div class="review-form">
+			
+            <form action="/movies/<%= movie._id %>/comments" method="POST">
+                <div class="form-group">
+					<label for="comment-text">Comment Text</label>
+					<textarea class="form-control" name="comment[text]" rows="1" id='comment-text'></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-md btn-outline-success btn-block">Submit</button>
+                </div>
+            </form>
+            <a href="/movies/<%= movie._id %>">Go Back</a>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,126 @@
+<% include ../partials/header %>
+
+
+<div class="container mt-3">
+	
+	<!-- movie tab, poster, info -->
+    <div class="row mb-2">
+		<!-- page functions info tabs + add to fav form -->
+        <div class="col-4 col-lg-2 mb-2">
+			<!-- movie info tab -->
+            <div class="list-group list-group-success" id="myList" role="tablist">
+            	<a class="list-group-item list-group-item-action active" data-toggle="list" href="#basic1" role="tab">Basic Info</a>
+				<a class="list-group-item list-group-item-action" data-toggle="list" href="#basic2" role="tab">More Info</a>
+            </div>
+			<!-- add to fav btn/form -->
+			<div class=" mt-2">
+				<form class="delete-form" action="/movies/<%=movie._id %>?_method=PUT" method="POST">
+					<button type="submit" class="btn btn-xs btn-outline-danger">
+						<i class="fas fa-heart"></i> Add to Favorites
+					</button>
+				</form>
+			</div>
+        </div>
+		
+		<!-- movie image/poster -->
+        <div class="col-8 col-lg-5">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= movie.omdbInfo.Poster %>">
+            </div>
+		</div>
+		
+		<!-- movie info controlled by movie tab -->
+		<div class="tab-content col-sm-12 col-lg-5">
+			<!-- basic info tab 1 -->
+			<div class="tab-pane active" id="basic1" role="tabpanel">
+				<div class="d-flex movieInfo">
+					<ol>
+						<li><span>Title:</span><p><%= movie.omdbInfo.Title %></p></li>
+						<li><span>Director:</span><p><%= movie.omdbInfo.Director %></p></li>
+						<li><span>Cast:</span><p><%= movie.omdbInfo.Actors %></p></li>
+						<li><span>Released:</span><p><%= movie.omdbInfo.Released %></p></li>
+						<li><span>Genre:</span><p><%= movie.omdbInfo.Genre %></p></li>
+						<li><span>Runtime:</span><p><%= movie.omdbInfo.Runtime %></p></li>
+						<li><span>Box Office:</span><p><%= movie.omdbInfo.BoxOffice %></p></li>
+						<li><span>Awards:</span><p><%= movie.omdbInfo.Awards %></p></li>
+						<li><span>IMDB Rating:</span><p><%= movie.omdbInfo.imdbRating %></p></li>
+						<li><span>FilmR8R Hearts</span><p><%= movie.hearts %></p></li>
+					</ol>
+				</div>
+			</div>
+			<!-- basic info 2 tab 2 -->
+			<div class="tab-pane" id="basic2" role="tabpanel">
+				<div class="d-flex movieInfo">
+					<ol>
+						<li><span>Title:</span><p><%= movie.omdbInfo.Title %></p></li>
+						<li><span>Writers:</span><p><%= movie.omdbInfo.Writer %></p></li>				
+						<li><span>Plot:</span><p><%= movie.omdbInfo.Plot %></p></li>
+						<li><span>Language:</span><p><%= movie.omdbInfo.Language %></p></li>
+						<li><span>Production</span><p><%= movie.omdbInfo.Production %></p></li>
+						<% if(movie.omdbInfo.Ratings && movie.omdbInfo.Ratings.length > 0) { %>
+							<% movie.omdbInfo.Ratings.forEach(rating => { %>
+								<li><span><%= rating.Source %></span><p><%= rating.Value %></p></li>
+							<% }) %>
+						<% } %>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	<!-- movie delete and comment forms -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="text-right">
+			<%  if (currentUser && currentUser.isAdmin == true) {%>
+				<form class="delete-form" action="/movies/<%=movie._id %>?_method=DELETE" method="POST">
+					<input type="submit" class="btn btn-xs btn-danger" value="Delete Movie Entry">
+				</form>
+			<% } %>
+                <a class="btn btn-success" href="/movies/<%= movie._id %>/comments/new">Add New Comment</a>
+            </div>
+		</div>
+	</div>	
+	
+	<!-- movies comments well -->
+	<% if (movie.comments.length > 0) { %>
+	<div class="row">
+		<div class="col-md-12">
+		    <div class="well">
+				<!-- create comment func -->
+                <% movie.comments.forEach(function(comment){ %>
+                    <div class="row review">
+                        <div class="col-md-12">
+							<!-- user name comment date and upvote counter -->
+							<p>
+								<a class="userpageLink" href="/user/<%= comment.author.id %>"><span><%= comment.author.username %></span></a>
+								- <%= comment.text %>
+								<span class="float-right"> <%= comment.upvotes %> <i class="fas fa-heart"></i> - <%= comment.dateAndTime %></span>
+							</p>
+                            
+							<!-- if comment being viewed by author -->
+							<% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                            <a class="btn btn-sm btn-warning mb-2" 
+                               href="/movies/<%=movie._id %>/comments/<%=comment._id %>/edit">Edit</a>
+                            <form class="float-right delete-form mb-2" action="/movies/<%=movie._id %>/comments/<%=comment._id %>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                            </form>
+							
+							<!-- if comment being viewed by anyone else -->
+							<% } else { %>
+							<form class="float-right mb-2 upvote-form" action="/movies/<%=movie._id %>/comments/<%=comment._id %>/upvote?_method=PUT" method="POST">
+								<button type="submit" class="btn btn-sm btn-success upvote-button">
+									<i class="fas fa-heart"></i>
+								</button>
+							</form>
+							<% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+    	</div>
+	</div>
+    <% } %>   
+</div>
+
+<% include ../partials/footer %>
